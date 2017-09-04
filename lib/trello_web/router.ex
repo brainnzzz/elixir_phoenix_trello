@@ -19,8 +19,11 @@ defmodule TrelloWeb.Router do
     get "*path", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", TrelloWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", TrelloWeb do
+    pipe_through :api
+
+    scope "/v1" do
+      post "/registration", RegistrationController, :create
+    end
+  end
 end
